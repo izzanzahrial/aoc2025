@@ -27,5 +27,11 @@ func main() {
 		slog.Error(err.Error())
 	}
 
+	day2Part2, err := day2.Part2()
+	if err != nil {
+		slog.Error(err.Error())
+	}
+
 	slog.Info(fmt.Sprintf("Day 2 Part 1 result: %d", day2Part1))
+	slog.Info(fmt.Sprintf("Day 2 Part 2 result: %d", day2Part2))
 }
