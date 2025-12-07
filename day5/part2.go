@@ -8,19 +8,13 @@ import (
 	"github.com/izzanzahrial/aoc2025/util"
 )
 
-func Part1() (int, error) {
+func Part2() (int, error) {
 	freshRangesInput, err := util.Read("day5", "fresh_ranges.txt")
 	if err != nil {
 		return 0, fmt.Errorf("failed to read fresh ranges input day 5 part 1: %w", err)
 	}
 
-	ingredientsInput, err := util.Read("day5", "ingredients.txt")
-	if err != nil {
-		return 0, fmt.Errorf("failed to read ingredients input day 5 part 1: %w", err)
-	}
-
 	parsedFreshRanges := bytes.Split(freshRangesInput, []byte("\n"))
-	parsedIngredients := bytes.Split(ingredientsInput, []byte("\n"))
 
 	var freshRanges []freshRange
 	for _, line := range parsedFreshRanges {
@@ -46,17 +40,10 @@ func Part1() (int, error) {
 
 	removeOverlapping(&sorter.ranges)
 
-	var freshIngredients int
-	for _, ingredient := range parsedIngredients {
-		intIngredient, err := strconv.Atoi(string(ingredient))
-		if err != nil {
-			return 0, fmt.Errorf("failed to convert ingredient to int: %w", err)
-		}
-
-		if isFresh(intIngredient, sorter.ranges) {
-			freshIngredients++
-		}
+	var possibleFreshIngredients int
+	for _, r := range sorter.ranges {
+		possibleFreshIngredients += r.upperBound - r.lowerBound + 1
 	}
 
-	return freshIngredients, nil
+	return possibleFreshIngredients, nil
 }
