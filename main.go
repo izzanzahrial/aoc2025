@@ -8,6 +8,7 @@ import (
 	"github.com/izzanzahrial/aoc2025/day2"
 	"github.com/izzanzahrial/aoc2025/day3"
 	"github.com/izzanzahrial/aoc2025/day4"
+	"github.com/izzanzahrial/aoc2025/day5"
 )
 
 func main() {
@@ -56,4 +57,11 @@ func main() {
 
 	slog.Info(fmt.Sprintf("Day 4 Part 1 result: %d", day4Part1))
 	slog.Info(fmt.Sprintf("Day 4 Part 2 result: %d", day4Part2))
+
+	day5Part1, err := day5.Part1()
+	if err != nil {
+		slog.Error(err.Error())
+	}
+
+	slog.Info(fmt.Sprintf("Day 5 Part 1 result: %d", day5Part1))
 }
